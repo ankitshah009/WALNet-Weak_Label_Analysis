@@ -1,5 +1,7 @@
-## WALNet-Weak_Label_Analysis
-Repository for Weak Label Learning for Audio Events - A closer look. Uses Audioset subset data provided for reproducibility.
+## WALNet Weak Label Analysis
+=============================
+
+Repository for paper "[A Closer Look at Weak Label Learning for Audio Events](https://arxiv.org/abs/1804.09288)". Uses Audioset subset data provided for reproducibility.
 
 
 
