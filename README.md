@@ -9,7 +9,7 @@ References
 
 If you use our repository for your research WALNet- weak label analysis, please cite our paper:
 
-    ``` 
+    
     @ARTICLE{2018arXiv180409288S,
     author = {{Shah}, A. and {Kumar}, A. and {Hauptmann}, A.~G. and {Raj}, B.
 	  },
@@ -24,4 +24,4 @@ If you use our repository for your research WALNet- weak label analysis, please 
     adsurl = {http://adsabs.harvard.edu/abs/2018arXiv180409288S},
     adsnote = {Provided by the SAO/NASA Astrophysics Data System}
     }
-    ```
+    
