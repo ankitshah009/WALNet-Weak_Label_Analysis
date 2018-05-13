@@ -51,52 +51,28 @@ class NET(nn.Module):
         self.layer19 = nn.Sequential(nn.Conv2d(1024,nclass,kernel_size=1),nn.Sigmoid())
 
     def forward(self,x):
-        #print x.size()
         out = self.layer1(x)
-        #print out.size()
         out = self.layer2(out)
-        #print out.size()
         out = self.layer3(out)
-        #print out.size()
         out = self.layer4(out)
-        #print out.size()
         out = self.layer5(out)
-        #print out.size()
         out = self.layer6(out)
-        #print out.size()
         out = self.layer7(out)
-        #print out.size()
         out = self.layer8(out)
-        #print out.size()
         out = self.layer9(out)
-        #print out.size()
         out = self.layer10(out)
-        #print out.size()
         out = self.layer11(out)
-        #print out.size()
         out = self.layer12(out)
-        #print out.size()
         out = self.layer13(out)
-        #print out.size()
         out = self.layer14(out)
-        #print out.size()
         out = self.layer15(out)
-        #print out.size()
         out = self.layer16(out)
-        #print out.size()
         out = self.layer17(out)
-        #print "Here"
-        #print out.size()
         out = self.layer18(out)
         out1 = self.layer19(out)
-        #print out1.size()
-        #out = torch.mean(out1,2,True)
         out = self.globalpool(out1,kernel_size=out1.size()[2:])
-        #print out.size()
         out = out.view(out.size(0),-1)
-        #print out.size()
-        #out = out.double()
-        return out #,out1
+        return out 
 
     def xavier_init(self):
         for m in self.modules():
@@ -138,30 +114,15 @@ def dataloader(features_path,file_list,index,batch_size,feat_dim):
                 classname = classname.split(',')
                 complete_filename = features_path + '/' + filename 
                 #starttime_a = time.time()                      
-                features = np.load(complete_filename) 
-                #durationa = time.time() - starttime_a
-                #print "length = " + str(durationa)
-                #starttime_a = time.time()                      
-                X_train_one = (np.hstack([features,np.zeros([args.spec_count,feat_dim-features.shape[1]])])).T
-                #durationa = time.time() - starttime_a
-                #print "length1 = " + str(durationa)
-                #starttime_a = time.time()                      
+                features = np.load(complete_filename)                      
+                X_train_one = (np.hstack([features,np.zeros([args.spec_count,feat_dim-features.shape[1]])])).T                     
                 X_train_one = X_train_one[newaxis,:,:]
-                #durationa = time.time() - starttime_a
-                #print "length2 = " + str(durationa)
-                #print X_train_one.shape
-
                 X_train.append(X_train_one)
                 Y_train_this = np.zeros(args.classCount)
-                #print classname
-                #print item
                 classname_int = [int(i) for i in classname]
                 Y_train_this[classname_int] =1
-                Y_train.append(Y_train_this)
-
-        
+                Y_train.append(Y_train_this)        
         X_train = np.array(X_train)
-        #print X_train.shape
         return X_train,Y_train
         
 
@@ -225,7 +186,6 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
         # 864.txt, 768.txt, 672.txt, 576.txt, 480.txt, 288.txt 
         split_point= [10,1,1,1,1,1]
         #batch sizes 2592, 2304, 2016, 1728, 1440, 1152, 864, 576, 288
-        #split_point_training = [10,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 	split_point_training = [10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
 
         length_training = []
@@ -246,13 +206,12 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 
         net = NET(classCount)
         net.xavier_init()
-        #optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, weight_decay=5e-4,momentum=args.momentum)
         optimizer = optim.Adam(net.parameters(), lr=args.learning_rate)
         loss_fn = nn.BCELoss()
         if use_cuda:
                 net.cuda()
-                #net = torch.nn.DataParallel(net, device_ids=range(torch.cuda.device_count()))
-                net = torch.nn.DataParallel(net, device_ids=[0,1])
+                net = torch.nn.DataParallel(net, device_ids=range(torch.cuda.device_count()))
+                #net = torch.nn.DataParallel(net, device_ids=[0,1])
                 
         for epoch in range(args.num_epochs):
                 print "Current epoch is " + str(epoch)
@@ -282,7 +241,6 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                             
                         starttime1 = time.time()                        
                         X_train,Y_train=dataloader(training_input_directory,training_files,j,batch_size,feat_dim)
-                        #X_train = X_train.astype('float32')
                         print "Train Data is loaded"
                         print "Value of J is = " + str(j)
                         print "Value of I is = " + str(i)
@@ -398,8 +356,6 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                 print "Val aps ranked " + str(aps_ranked[-1])
                 print "Val APS " + str(aps[-1])
                 print "Val AUC " + str(aucs[-1])
-                #print aps
-                #print aps_ranked
                 
 
                 filename = os.path.join('metrics_' + str(args.run_number),'metrics_validation_' + str(args.run_number) + '_' +  str(epoch) + '_aps.txt')
