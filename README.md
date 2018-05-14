@@ -9,6 +9,8 @@ Repository for paper "[A Closer Look at Weak Label Learning for Audio Events](ht
 References
 ==========
 
+<a href="https://arxiv.org/pdf/1804.09288.pdf"><img src="https://img.shields.io/badge/download%20paper-PDF-ff69b4.svg" alt="Download paper in PDF format" title="Download paper in PDF format" align="right" /></a>
+
 If you use our repository for your research WALNet- weak label analysis, please cite our paper:
 
     
