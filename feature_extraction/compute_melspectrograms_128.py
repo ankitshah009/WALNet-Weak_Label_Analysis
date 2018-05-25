@@ -20,8 +20,6 @@ def processList(inlist):
     subprocess.Popen(['ffmpeg'])
     #File containing list of input wav files to process and extract features    
     inls = open(inlist)
-    #print audio_root
-    #print output_root
 
     infls = inls.readlines()
     out_file_list = []
@@ -50,8 +48,6 @@ def processList(inlist):
                 os.makedirs(out_dir)
             specfile = str(out_dir) + '/' + str(file_name) + '.orig.spec.npy'
             print specfile
-            #save log-spectogram as numpy011
-            #print spec
             np.save(specfile, spec, allow_pickle=False)
             if infl_list[-2].strip() == "":
                 output_mel_file = str(file_name) + '.orig.spec.npy'
