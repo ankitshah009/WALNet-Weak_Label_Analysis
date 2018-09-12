@@ -34,4 +34,6 @@ If you use our repository for your research WALNet- weak label analysis, please 
     adsnote = {Provided by the SAO/NASA Astrophysics Data System}
     }
     
+## Questions
 
+Contact Ankit Shah (aps1@andrew.cmu.edu) or Anurag Kumar (alnu@andrew.cmu.edu)
