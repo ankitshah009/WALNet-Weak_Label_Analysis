@@ -9,7 +9,7 @@ If you have any question please contact - Ankit Shah - aps1@andrew.cmu.edu or An
 
 ### WALNet Architecture Diagram
 
-![WALNet Architecture Diagram](https://github.com/ankitshah009/WALNet-Weak_Label_Analysis/blob/master/WALNet_Architecture_DIagram.jpg)
+[WALNet Architecture Diagram](https://github.com/ankitshah009/WALNet-Weak_Label_Analysis/blob/master/WALNet_Architecture_DIagram.jpg)
 
 ### Web Page for More Details on Experimentation: - 
 
