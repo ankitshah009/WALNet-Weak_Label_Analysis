@@ -13,7 +13,7 @@ If you have any question please contact - Ankit Shah - aps1@andrew.cmu.edu or An
 
 ### Web Page for More Details on Experimentation: - 
 
-![Visit our Web Page here](https://ankitshah009.github.io/weak_label_learning_audio)
+[Visit our Web Page here](https://ankitshah009.github.io/weak_label_learning_audio)
 
 Reference
 ==========
