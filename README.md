@@ -11,6 +11,10 @@ If you have any question please contact - Ankit Shah - aps1@andrew.cmu.edu or An
 
 ![WALNet Architecture Diagram](https://github.com/ankitshah009/WALNet-Weak_Label_Analysis/blob/master/WALNet_Architecture_DIagram.jpg)
 
+### Web Page for More Details on Experimentation: - 
+
+[Visit our Web Page here](https://ankitshah009.github.io/weak_label_learning_audio)
+
 Reference
 ==========
 
@@ -19,20 +23,14 @@ Reference
 If you use our repository for your research WALNet- weak label analysis, please cite our paper:
 
     
-    @ARTICLE{2018arXiv180409288S,
-    author = {{Shah}, A. and {Kumar}, A. and {Hauptmann}, A.~G. and {Raj}, B.
-	  },
-    title = "{A Closer Look at Weak Label Learning for Audio Events}",
-    journal = {ArXiv e-prints},
-    archivePrefix = "arXiv",
-    eprint = {1804.09288},
-    primaryClass = "cs.SD",
-    keywords = {Computer Science - Sound, Computer Science - Learning, Computer Science - Multimedia, Electrical Engineering and Systems Science - Audio and Speech Processing},
-    year = 2018,
-    month = apr,
-    adsurl = {http://adsabs.harvard.edu/abs/2018arXiv180409288S},
-    adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-    }
+	@article{shah2018closer,
+  	title={A Closer Look at Weak Label Learning for Audio Events},
+  	author={Shah, Ankit and Kumar, Anurag and Hauptmann, Alexander G and Raj, Bhiksha},
+  	journal={arXiv preprint arXiv:1804.09288},
+  	year={2018}
+	}
+    
+
     
 ## Questions
 
