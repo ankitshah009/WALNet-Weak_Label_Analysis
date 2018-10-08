@@ -31,6 +31,17 @@ If you use our repository for your research WALNet- weak label analysis, please 
 	}
     
 
+Latest Results - 
+===============
+#### Use these numbers while reporting - arXiV paper update coming soon as version 2
+
+
+| Training Set  | MAP	 |
+| ------------- | ------------- |
+| AudioSet - 10 | 22.87  |
+| AudioSetAt30 | 22.42 |
+| AudioSetAt60 | 22.42 |
+
     
 ## Questions
 
