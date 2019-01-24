@@ -36,11 +36,17 @@ Latest Results -
 #### Use these numbers while reporting - arXiV paper update coming soon as version 2
 
 
-| Training Set  | MAP	 |
+| Training Set  | MAP on Testing	 |
 | ------------- | ------------- |
 | AudioSet - 10 | 22.87  |
 | AudioSetAt30 | 22.42 |
 | AudioSetAt60 | 22.42 |
+
+
+| ESC-50 dataset  | MAP	 |
+| ------------- | ------------- |
+| SoundNet | 74.5  |
+| WALNet | 83.5 |
 
     
 ## Questions
