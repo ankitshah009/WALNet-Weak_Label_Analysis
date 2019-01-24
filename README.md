@@ -45,7 +45,7 @@ Latest Results -
 
 | ESC-50 dataset  | MAP	 |
 | ------------- | ------------- |
-| SoundNet | 74.5  |
+| SoundNet | 74.2  |
 | WALNet | 83.5 |
 
     
