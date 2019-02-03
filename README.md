@@ -3,9 +3,7 @@
 
 This is an implementation for the paper "[A Closer Look at Weak Label Learning for Audio Events](https://arxiv.org/abs/1804.09288)". In this paper, we attempt to understand the challenges of large scale Audio Event Detection (AED) using weakly labeled data through a CNN based framework. Our network architecture is capable of handling variable length recordings and architecture design provides a way to control segment size of adjustable secondary outputs and thus these features eliminate the need for additional preprocessing steps. We look into how label density and label corruption affects performance and further compare mined web data as training data in comparison with manually labelled training data from AudioSet. We believe our work provides an approach to understand the challenges of weakly labeled learning and future AED works would benefit from our exploration. 
 
-We provide the Audioset data (list of files used in our experimentation) provided for reproducibility.
-
-If you have any question please contact - Ankit Shah - aps1@andrew.cmu.edu or Anurag Kumar - alnu@andrew.cmu.edu. 
+We provide the Audioset data (list of files used in our experimentation) provided for reproducibility. 
 
 ### WALNet Architecture Diagram
 
@@ -41,6 +39,18 @@ Latest Results -
 | AudioSet - 10 | 22.87  |
 | AudioSetAt30 | 22.42 |
 | AudioSetAt60 | 22.42 |
+
+ ##### Mean Average Precision on Audioset - 10 second recordings 
+
+  | Model | MAP |
+  | ----- | ---- |
+  | ConvNet (mean pooling) | 20.3 |
+  | ResNet (mean pooling) |  21.8 |
+  | ResNet-ATT [Xu et al., 2017a] | 22.0 |
+  | ResNet-SPDA [Zhang et al., 2016] | 21.9 |
+  | Mmnet [Chou et al., 2018] | 22.6 |
+  | WALNet [Shah.et.al, 2018] | 22.9 |
+
 
 
 | ESC-50 dataset  | MAP	 |
