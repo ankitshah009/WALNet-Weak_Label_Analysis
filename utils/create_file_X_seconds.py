@@ -96,3 +96,4 @@ if __name__ == "__main__":
 
 #Sample command
 #print "python create_files_X_seconds arg1 = audio_path arg2 = value of X arg3 = audio_information file (modified_output_downloaded) arg4 = duration list file arg5 = output path arg6 = output path file"
+#python create_file_X_seconds.py --input_audio_path ../../audio/balanced_original_downloaded/ --duration_required 240 --audio_info_file ../lists/xao --duration_list_file ../lists/duration_in_seconds/balanced_original_downloaded_in_seconds.list --output_audio_path 240_trimmed_audio_balanced --output_file_list 240_trimmed_balanced_audio.list
