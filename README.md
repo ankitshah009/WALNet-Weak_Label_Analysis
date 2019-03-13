@@ -17,6 +17,10 @@ We provide the Audioset data (list of files used in our experimentation) provide
 
 [128 dimensional MelSpectrogram Features - Balanced Set - 10 second](https://drive.google.com/file/d/11FYyEX1xHqhR0b5Meoi4vqarjsaHMfSy/view?usp=sharing)
 
+[128 dimensional MelSpectrogram Features - Validation Set - 10 second](https://drive.google.com/file/d/11G_Ii0IPUaq0d83BdibVoj7C3cfNjI4d/view?usp=sharing)
+
+[128 dimensional MelSpectrogram Features - Testing Set - 10 second](https://drive.google.com/file/d/11GrJrjhWT4aieVgM0HogSwXHdwBnKPhg/view?usp=sharing)
+
 
 Reference
 ==========
