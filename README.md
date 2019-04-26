@@ -15,7 +15,7 @@ We provide the Audioset data (list of files used in our experimentation) provide
 
 ### Feature Level Representation - Download here
 
-[128 dimensional MelSpectrogram Features - Balanced Set - 10 second](https://drive.google.com/file/d/11FYyEX1xHqhR0b5Meoi4vqarjsaHMfSy/view?usp=sharing)
+[128 dimensional MelSpectrogram Features - Balanced Set - 10 second](https://drive.google.com/file/d]/11FYyEX1xHqhR0b5Meoi4vqarjsaHMfSy/view?usp=sharing)
 
 [128 dimensional MelSpectrogram Features - Validation Set - 10 second](https://drive.google.com/file/d/11G_Ii0IPUaq0d83BdibVoj7C3cfNjI4d/view?usp=sharing)
 
@@ -24,6 +24,10 @@ We provide the Audioset data (list of files used in our experimentation) provide
 [128 dimensional MelSpectrogram Features - Balanced Set - 30 second](https://drive.google.com/file/d/11Wb61gXWqsA2LimhVw89a8UDXMdQgp6Y/view?usp=sharing)
 
 [128 dimensional MelSpectrogram Features - Balanced Set - 60 second](https://drive.google.com/file/d/1RCiO5rAA96_pBivP5qrCRbIR5eujNuau/view?usp=sharing)
+
+### Embedding level feature representation - Download here
+
+[All Embedding level features for AudioSet experiments](https://drive.google.com/file/d/1RFwssy3Ftz6YpYwAAiu7-vtczwfCAtmm/view?usp=sharing)
 
 Reference
 ==========
