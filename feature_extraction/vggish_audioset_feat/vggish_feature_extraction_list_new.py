@@ -29,6 +29,13 @@ Usage:
   $ python vggish_smoke_test.py
 """
 
+""" 
+Script update Author: - Ankit Shah
+Email:- ankit.tronix@gmail.com
+Another Corresponding Author:- Anurag Kumar
+Email:- anurag237@gmail.com
+"""
+
 from __future__ import print_function
 
 import numpy as np
