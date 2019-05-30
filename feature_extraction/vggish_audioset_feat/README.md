@@ -1,3 +1,12 @@
+Using the features from vggish_audioset_extraction pipeline. 
+Credits to original authors. 
+
+We have used their code and written wrapper scripts to make the overall feature extraction process simpler. 
+
+Sample Running command to extract vggish features using our codebase built on top of original authors codebase. 
+
+python vggish_feature_extraction_list_new.py --input_file_list <list of audio files> --audiopath <where is your audio - relative path is also fine> --outputpath <output folder> --list_root <root where you want list of extracted features to be placed> 
+
 # Models for AudioSet: A Large Scale Dataset of Audio Events
 
 This repository provides models and supporting code associated with
