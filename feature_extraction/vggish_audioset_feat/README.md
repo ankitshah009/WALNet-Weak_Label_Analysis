@@ -1,9 +1,17 @@
-Using the features from vggish_audioset_extraction pipeline. 
-Credits to original authors. 
+Using the features from vggish_audioset_extraction pipeline.  
 
-We have used their code and written wrapper scripts to make the overall feature extraction process simpler. 
+We have used their code and written wrapper scripts to make the overall feature extraction process simpler.
 
-Sample Running command to extract vggish features using our codebase built on top of original authors codebase. 
+Environment setup 
+
+```shell
+conda install -c conda-forge librosa
+conda install -c anaconda scipy
+conda install -c conda-forge resampy
+conda install tensorflow-gpu
+```
+
+Command to extract vggish features using our codebase built on top of original authors codebase. 
 
 python vggish_feature_extraction_list_new.py --input_file_list <list of audio files> --audiopath <where is your audio - relative path is also fine> --outputpath <output folder> --list_root <root where you want list of extracted features to be placed> 
 
