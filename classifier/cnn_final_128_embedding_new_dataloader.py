@@ -85,7 +85,7 @@ def dataloader(features_path,file_list,batch_size,feat_dim,shuffle=True,last_bat
 		Y_train=[]
 		for item in file_list:
 			filename=item[0]
-			print filename
+			print(filename)
                 	classname = item[1].strip()
         	        classname = classname.split(',')
 	                complete_filename = features_path + '/' + filename 
@@ -117,7 +117,7 @@ def dataloader(features_path,file_list,batch_size,feat_dim,shuffle=True,last_bat
 			Y_train=[]
 			for item in mini_file_list:
 				filename=item[0]
-				print filename
+				print(filename)
 				classname=item[1].strip()
 				classname=classname.split(',')
 				complete_filename=features_path + '/' + filename
@@ -193,7 +193,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 	aps_best=0
 	model_path=''
         for epoch in range(args.num_epochs):
-                print "Current epoch is " + str(epoch)
+                print("Current epoch is " + str(epoch))
                 i = 0
                 j = 0
                 epo_train_loss = 0
@@ -216,7 +216,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 			for batch in dataloader(training_input_directory,training_files,args.sgd_batch_size,feat_dim,shuffle=True,last_batch=True):
 			    inputs,targets=batch	
     			    if targets is None:
-        			print 'No Target given to minibatch iterator. Using a dummy target with two outputs'
+        			print('No Target given to minibatch iterator. Using a dummy target with two outputs')
         			targets = np.zeros((inputs.shape[0],2))
         
      			    indata = torch.Tensor(inputs)
@@ -238,11 +238,11 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 
                             epo_train_loss += batch_train_loss.data[0]
                             batch_count += 1
-                        print batch_count
-                        print "{} Set-Batch training done in {} seconds. Train Loss {} ".format(i, time.time() - start_time, epo_train_loss)
+                        print(batch_count)
+                        print("{} Set-Batch training done in {} seconds. Train Loss {} ".format(i, time.time() - start_time, epo_train_loss))
                 epo_train_loss = epo_train_loss/batch_count
 
-                print "{} Training done in {} seconds. Training Loss {}".format(epoch, time.time() - start_time, epo_train_loss)
+                print("{} Training done in {} seconds. Training Loss {}".format(epoch, time.time() - start_time, epo_train_loss))
 
                 ###############
                 ### Validation 
@@ -266,7 +266,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 			for batch in dataloader(validation_input_directory,validation_files,args.sgd_batch_size,feat_dim,shuffle=False,last_batch=True):
 			    inputs,targets=batch
     			    if targets is None:
-        			print 'No Target given to minibatch iterator. Using a dummy target with two outputs'
+        			print('No Target given to minibatch iterator. Using a dummy target with two outputs')
         			targets = np.zeros((inputs.shape[0],2))
         
      			    indata = torch.Tensor(inputs)
@@ -288,21 +288,21 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                             inres = batch_pred.data.cpu().numpy().tolist()
                             all_predictions.extend(inres)
                             all_labels.extend(lbdata.data.cpu().numpy().tolist())
-                        print val_batch_count
-                        print "{} Set-Batch Validation done in {} seconds. Validation Loss {} ".format(i, time.time() - start_time_val, epo_val_loss)
+                        print(val_batch_count)
+                        print("{} Set-Batch Validation done in {} seconds. Validation Loss {} ".format(i, time.time() - start_time_val, epo_val_loss))
                 epo_val_loss = epo_val_loss/val_batch_count
-                print len(all_labels)
+                print(len(all_labels))
 		all_predictions=np.array(all_predictions)
                 all_labels=np.array(all_labels)
                 aps = metric.compute_AP_all_class(all_labels,all_predictions)
                 aucs = metric.compute_AUC_all_class(all_labels,all_predictions)
                 aps_ranked = metric.compute_AP_my_all_class(all_labels,all_predictions)
-                print "Epoch number " + str(epoch)
-                print "Val aps ranked " + str(aps_ranked[-1])
-                print "Val APS " + str(aps[-1])
-                print "Val AUC " + str(aucs[-1])
-                #print aps
-                #print aps_ranked
+                print("Epoch number " + str(epoch))
+                print("Val aps ranked " + str(aps_ranked[-1]))
+                print("Val APS " + str(aps[-1]))
+                print("Val AUC " + str(aucs[-1]))
+                #print(aps)
+                #print(aps_ranked)
                 
 
                 filename = os.path.join('output_' + str(args.run_number),'metrics_validation_' + str(args.run_number) + '_' +  str(epoch) + '_aps.txt')
@@ -324,7 +324,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 			model_path='output_'+str(args.run_number) + '/model_path.' + str(args.run_number) + '_' + str(epoch) + '.pkl'
 
 
-                print "{} Validation done in {} seconds. Validation Loss {}".format(epoch, time.time() - start_time_val, epo_val_loss)
+                print("{} Validation done in {} seconds. Validation Loss {}".format(epoch, time.time() - start_time_val, epo_val_loss))
 
 	if use_cuda:
 		load_model(net,model_path)
@@ -354,7 +354,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 		for batch in dataloader(testing_input_directory,testing_files,args.sgd_batch_size,feat_dim,shuffle=False,last_batch=True):
 		    inputs,targets=batch
 		    if targets is None:
-			print 'No Target given to minibatch iterator. Using a dummy target with two outputs'
+			print('No Target given to minibatch iterator. Using a dummy target with two outputs')
 			targets = np.zeros((inputs.shape[0],2))
 
 		    indata = torch.Tensor(inputs)
@@ -376,20 +376,20 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                     inres = batch_pred.data.cpu().numpy().tolist()
                     all_predictions.extend(inres)
                     all_labels.extend(lbdata.data.cpu().numpy().tolist())
-                print test_batch_count
-                print "{} Set-Batch Testing done in {} seconds. Testing Loss {} ".format(i, time.time() - start_time_test, epo_test_loss)
+                print(test_batch_count)
+                print("{} Set-Batch Testing done in {} seconds. Testing Loss {} ".format(i, time.time() - start_time_test, epo_test_loss))
         epo_test_loss = epo_test_loss/test_batch_count
-        print "Length of all prediction - Test " + str(len(all_predictions))
-        print len(all_labels)
+        print("Length of all prediction - Test " + str(len(all_predictions)))
+        print(len(all_labels))
 	all_predictions=np.array(all_predictions)
 	all_labels=np.array(all_labels)
         aps = metric.compute_AP_all_class(all_labels,all_predictions)
         aucs = metric.compute_AUC_all_class(all_labels,all_predictions)
         aps_ranked = metric.compute_AP_my_all_class(all_labels,all_predictions)
                 
-        print "Test APS " + str(aps[-1])
-        print "Test aps ranked " + str(aps_ranked[-1])
-        print "Test AUCS " + str(aucs[-1])
+        print("Test APS " + str(aps[-1]))
+        print("Test aps ranked " + str(aps_ranked[-1]))
+        print("Test AUCS " + str(aucs[-1]))
 	filename = os.path.join('output_' + str(args.run_number),'metrics_testing_' + str(args.run_number) + '_' +  str(epoch_best) + '_aps.txt')
 	filename1 = os.path.join('output_' + str(args.run_number),'metrics_testing_' + str(args.run_number) + '_' + str(epoch_best) + '_aps_ranked.txt')
 	filename2 = os.path.join('output_' + str(args.run_number),'metrics_testing_' + str(args.run_number) + '_' + str(epoch_best) + '_aucs.txt')
@@ -399,13 +399,13 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 
         epo_test_loss = epo_test_loss/test_batch_count
 
-        print "{} Testing done in {} seconds. Testing Loss {}".format(epoch, time.time() - start_time_test,epo_test_loss)
+        print("{} Testing done in {} seconds. Testing Loss {}".format(epoch, time.time() - start_time_test,epo_test_loss))
 
 
 if __name__ == '__main__':
-        print len(sys.argv )
+        print(len(sys.argv ))
         if len(sys.argv) < 13:
-                print "Running Instructions:\n\npython cnn.py <input_dir> <classCount> <spec_count> <segment_length> <learning_rate> <momentum> <evaluate> <test> <output_dir>"
+                print("Running Instructions:\n\npython cnn.py <input_dir> <classCount> <spec_count> <segment_length> <learning_rate> <momentum> <evaluate> <test> <output_dir>")
         else:
                 parser = argparse.ArgumentParser()
 
