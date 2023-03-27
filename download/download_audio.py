@@ -1,5 +1,4 @@
 # Code Contributor - Ankit Shah - ankit.tronix@gmail.com
-import pafy
 import time
 import datetime
 import itertools
