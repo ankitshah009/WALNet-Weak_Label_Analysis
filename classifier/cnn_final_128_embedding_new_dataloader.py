@@ -242,7 +242,7 @@ def setupClassifier(training_input_directory, validation_input_directory, testin
                 batch_train_loss.backward()
                 optimizer.step()
 
-                epo_train_loss += batch_train_loss.data[0]
+                epo_train_loss += batch_train_loss.data
                 batch_count += 1
             print(batch_count)
             print("{} Set-Batch training done in {} seconds. Train Loss {} ".format(i, time.time() - start_time,
@@ -292,7 +292,7 @@ def setupClassifier(training_input_directory, validation_input_directory, testin
                 batch_pred = net(indata)
 
                 batch_val_loss = loss_fn(batch_pred, lbdata)
-                epo_val_loss += batch_val_loss.data[0]
+                epo_val_loss += batch_val_loss.data
                 val_batch_count += 1
 
                 inres = batch_pred.data.cpu().numpy().tolist()
@@ -387,7 +387,7 @@ def setupClassifier(training_input_directory, validation_input_directory, testin
             batch_pred = net(indata)
 
             batch_test_loss = loss_fn(batch_pred, lbdata)
-            epo_test_loss += batch_test_loss.data[0]
+            epo_test_loss += batch_test_loss.data
             test_batch_count += 1
 
             inres = batch_pred.data.cpu().numpy().tolist()

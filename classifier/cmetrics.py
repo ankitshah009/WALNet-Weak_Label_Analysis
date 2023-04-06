@@ -4,8 +4,8 @@ import numpy
 
 def compute_ap_my(label, pred):
     if label.sum() == 0:
-        print('No positives found, retuning None')
-        return None
+        # print('No positives found, retuning None')
+        return 0
     else:
         sids = numpy.argsort(pred)[::-1]
         pos = 0.0
@@ -24,10 +24,14 @@ def compute_ap_my(label, pred):
 
 
 def compute_roc_auc(label, pred):
+    if label.sum()==0:
+        return 0
     return metrics.roc_auc_score(label, pred)
 
 
 def compute_ap(label, pred):
+    if label.sum()==0:
+        return 0
     return metrics.average_precision_score(label, pred)
 
 

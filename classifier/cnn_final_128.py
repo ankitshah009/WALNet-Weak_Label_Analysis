@@ -89,7 +89,7 @@ use_cuda = torch.cuda.is_available()
 def iterate_minibatches_torch(inputs,batchsize,targets=None,shuffle=False,last_batch=True):
     last_batch = not last_batch
     if targets is None:
-        print 'No Target given to minibatch iterator. Using a dummy target with two outputs'
+        print('No Target given to minibatch iterator. Using a dummy target with two outputs')
         targets = np.zeros((inputs.shape[0],2))
         
      
@@ -186,7 +186,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
         # 864.txt, 768.txt, 672.txt, 576.txt, 480.txt, 288.txt 
         split_point= [10,1,1,1,1,1]
         #batch sizes 2592, 2304, 2016, 1728, 1440, 1152, 864, 576, 288
-	split_point_training = [10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+        split_point_training = [10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
 
         length_training = []
         for i in range(len(args.train_list)):
@@ -214,7 +214,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                 #net = torch.nn.DataParallel(net, device_ids=[0,1])
                 
         for epoch in range(args.num_epochs):
-                print "Current epoch is " + str(epoch)
+                print("Current epoch is " + str(epoch))
                 i = 0
                 j = 0
                 epo_train_loss = 0
@@ -225,28 +225,28 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                 ### Training 
                 #############
                 
-                print sum(length_training)
+                print(sum(length_training))
                 net.train()
                 while(i<sum(length_training)):
                         if (j == 0):
                             index1 = retrieve_index(i,length_training_sum)
-                            print "INDEX 1 is "
-                            print index1
-                            print "i - " + str(index1) + "    length training sum " + str(length_training_sum[index1])
+                            print("INDEX 1 is ")
+                            print(index1)
+                            print("i - " + str(index1) + "    length training sum " + str(length_training_sum[index1]))
                             length = length_training[index1]
-                            batch_size = length/split_point_training[index1]
+                            batch_size = length//split_point_training[index1]
                             training_files = training_set[index1]
                             random.shuffle(training_files)
                             feat_dim = int(args.train_list[index1])
                             
                         starttime1 = time.time()                        
                         X_train,Y_train=dataloader(training_input_directory,training_files,j,batch_size,feat_dim)
-                        print "Train Data is loaded"
-                        print "Value of J is = " + str(j)
-                        print "Value of I is = " + str(i)
-                        print "Value of length = " + str(length)
+                        print("Train Data is loaded")
+                        print("Value of J is = " + str(j))
+                        print("Value of I is = " + str(i))
+                        print("Value of length = " + str(length))
                         duration = time.time() - starttime1
-                        print "Loading data took = " + str(duration)
+                        print("Loading data took = " + str(duration))
 
 
                         if (j+batch_size) < length:
@@ -255,7 +255,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                         else:
                             j = 0
                             i = length_training_sum[index1]
-                            print i
+                            print(i)
                             
                         for batch in  iterate_minibatches_torch(X_train,args.sgd_batch_size,Y_train,shuffle=True,last_batch=True):
                             indata,lbdata = batch
@@ -274,13 +274,13 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                             batch_train_loss.backward()
                             optimizer.step()
 
-                            epo_train_loss += batch_train_loss.data[0]
+                            epo_train_loss += batch_train_loss.data
                             batch_count += 1
-                        print batch_count
-                        print "{} Set-Batch training done in {} seconds. Train Loss {} ".format(i, time.time() - start_time, epo_train_loss)
+                        print(batch_count)
+                        print("{} Set-Batch training done in {} seconds. Train Loss {} ".format(i, time.time() - start_time, epo_train_loss))
                 epo_train_loss = epo_train_loss/batch_count
 
-                print "{} Training done in {} seconds. Training Loss {}".format(epoch, time.time() - start_time, epo_train_loss)
+                print("{} Training done in {} seconds. Training Loss {}".format(epoch, time.time() - start_time, epo_train_loss))
                 if not os.path.exists('model_'+str(args.run_number)):
                         os.mkdir('model_' + str(args.run_number))
                 torch.save(net.state_dict(),'model_' + str(args.run_number)+'/model_path.' + str(args.run_number) + '_' +str(epoch)+  '.pkl')
@@ -301,27 +301,27 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                 while(i<sum(length_validation)):
                         if (j==0):
                             index1 = retrieve_index(i,length_validation_sum)
-                            print index1
-                            print "i - " + str(index1) + "    length validation sum " + str(length_validation_sum[index1])
+                            print(index1)
+                            print("i - " + str(index1) + "    length validation sum " + str(length_validation_sum[index1]))
                             length = length_validation[index1]
-                            batch_size = length/split_point[index1]
+                            batch_size = length//split_point[index1]
                             feat_dim = int(args.val_test_list[index1])
                             validation_files = validation_set[index1]
                             random.shuffle(validation_files)    
                         
                         X_val,Y_val=dataloader(validation_input_directory,validation_files,j,batch_size,feat_dim)
-                        print "Validation Data is loaded"
-                        print "Value of J is = " + str(j)
-                        print "Value of I is = " + str(i)
-                        print "Value of length = " + str(length)
+                        print("Validation Data is loaded")
+                        print("Value of J is = " + str(j))
+                        print("Value of I is = " + str(i))
+                        print("Value of length = " + str(length))
                         if (j+batch_size) < length:
                             j = j+batch_size
                             i = i+batch_size
                         else:
                             j = 0
                             i = length_validation_sum[index1]
-                            print "At length validation sum"
-                            print i
+                            print("At length validation sum")
+                            print(i)
                                 
                         for batch in  iterate_minibatches_torch(X_val,args.sgd_batch_size,Y_val,shuffle=True,last_batch=True):
                             indata,lbdata = batch
@@ -336,26 +336,26 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                             batch_pred = net(indata)
 
                             batch_val_loss = loss_fn(batch_pred,lbdata)
-                            epo_val_loss += batch_val_loss.data[0]
+                            epo_val_loss += batch_val_loss.data
                             val_batch_count += 1
                                 
                             inres = batch_pred.data.cpu().numpy()
                             all_predictions = np.concatenate((all_predictions,inres),axis=0)
                             all_labels = np.concatenate((all_labels,lbdata.data.cpu().numpy()),axis=0)
-                        print val_batch_count
-                        print "{} Set-Batch Validation done in {} seconds. Validation Loss {} ".format(i, time.time() - start_time_val, epo_val_loss)
+                        print(val_batch_count)
+                        print("{} Set-Batch Validation done in {} seconds. Validation Loss {} ".format(i, time.time() - start_time_val, epo_val_loss))
                 epo_val_loss = epo_val_loss/val_batch_count
                 all_predictions = all_predictions[1:,:]
                 all_labels = all_labels[1:,:]
-                print len(all_labels)
+                print(len(all_labels))
                 
                 aps = metric.compute_AP_all_class(all_labels,all_predictions)
                 aucs = metric.compute_AUC_all_class(all_labels,all_predictions)
                 aps_ranked = metric.compute_AP_my_all_class(all_labels,all_predictions)
-                print "Epoch number " + str(epoch)
-                print "Val aps ranked " + str(aps_ranked[-1])
-                print "Val APS " + str(aps[-1])
-                print "Val AUC " + str(aucs[-1])
+                print("Epoch number " + str(epoch))
+                print("Val aps ranked " + str(aps_ranked[-1]))
+                print("Val APS " + str(aps[-1]))
+                print("Val AUC " + str(aucs[-1]))
                 
 
                 filename = os.path.join('metrics_' + str(args.run_number),'metrics_validation_' + str(args.run_number) + '_' +  str(epoch) + '_aps.txt')
@@ -369,7 +369,7 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                 np.save(filename1,aps_ranked)
                 np.save(filename2,aucs)
 
-                print "{} Validation done in {} seconds. Validation Loss {}".format(epoch, time.time() - start_time_val, epo_val_loss)
+                print("{} Validation done in {} seconds. Validation Loss {}".format(epoch, time.time() - start_time_val, epo_val_loss))
 
         ###############
         ### Testing 
@@ -386,27 +386,27 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
         while(i<sum(length_testing)):
                 if (j==0):
                     index1 = retrieve_index(i,length_testing_sum)
-                    print index1
-                    print "i - " + str(index1) + "    length testing sum " + str(length_testing_sum[index1])
+                    print(index1)
+                    print("i - " + str(index1) + "    length testing sum " + str(length_testing_sum[index1]))
                     length = length_testing[index1]
-                    batch_size = length/split_point[index1]
+                    batch_size = length//split_point[index1]
                     feat_dim = int(args.val_test_list[index1])
                     testing_files = testing_set[index1]
                     random.shuffle(testing_files)
                 
                 X_test,Y_test=dataloader(testing_input_directory,testing_files,j,batch_size,feat_dim)
-                print "Test Data is loaded"
-                print "Value of J is = " + str(j)
-                print "Value of I is = " + str(i)
-                print "Value of length = " + str(length)
+                print("Test Data is loaded")
+                print("Value of J is = " + str(j))
+                print("Value of I is = " + str(i))
+                print("Value of length = " + str(length))
                 if (j+batch_size) < length:
                     j = j+batch_size
                     i = i+batch_size
                 else:
                     j = 0
                     i = length_testing_sum[index1]
-                    print "At length testing sum"
-                    print i
+                    print("At length testing sum")
+                    print(i)
                         
                 for batch in  iterate_minibatches_torch(X_test,args.sgd_batch_size,Y_test,shuffle=True,last_batch=True):
                     indata,lbdata = batch
@@ -421,25 +421,25 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
                     batch_pred = net(indata)
 
                     batch_test_loss = loss_fn(batch_pred,lbdata)
-                    epo_test_loss += batch_test_loss.data[0]
+                    epo_test_loss += batch_test_loss.data
                     test_batch_count += 1
                         
                     inres = batch_pred.data.cpu().numpy()
     
                     all_predictions = np.concatenate((all_predictions,inres),axis=0)
                     all_labels = np.concatenate((all_labels,lbdata.data.cpu().numpy()),axis=0)
-                print test_batch_count
-                print "{} Set-Batch Testing done in {} seconds. Testing Loss {}".format(i, time.time() - start_time_test, epo_test_loss)
-        print "Length of all prediction - Test " + str(len(all_predictions))
+                print(test_batch_count)
+                print("{} Set-Batch Testing done in {} seconds. Testing Loss {}".format(i, time.time() - start_time_test, epo_test_loss))
+        print("Length of all prediction - Test " + str(len(all_predictions)))
         all_predictions = all_predictions[1:,:]
         all_labels = all_labels[1:,:]
         aps = metric.compute_AP_all_class(all_labels,all_predictions)
         aucs = metric.compute_AUC_all_class(all_labels,all_predictions)
         aps_ranked = metric.compute_AP_my_all_class(all_labels,all_predictions)
                 
-        print "Test APS " + str(aps[-1])
-        print "Test aps ranked " + str(aps_ranked[-1])
-        print "Test AUCS " + str(aucs[-1])
+        print("Test APS " + str(aps[-1]))
+        print("Test aps ranked " + str(aps_ranked[-1]))
+        print("Test AUCS " + str(aucs[-1]))
         filename = 'metrics_testing_' + str(args.run_number) + 'aps.txt'
         filename1 = 'metrics_testing_' + str(args.run_number) + 'aps_ranked.txt'
         filename2 = 'metrics_testing_' + str(args.run_number) + 'aucs.txt'
@@ -449,13 +449,13 @@ def setupClassifier(training_input_directory,validation_input_directory,testing_
 
         epo_test_loss = epo_test_loss/test_batch_count
 
-        print "{} Testing done in {} seconds. Testing Loss {}".format(epoch, time.time() - start_time_test,epo_test_loss)
+        print("{} Testing done in {} seconds. Testing Loss {}".format(epoch, time.time() - start_time_test,epo_test_loss))
 
 
 if __name__ == '__main__':
-        print len(sys.argv )
+        print(len(sys.argv ))
         if len(sys.argv) < 13:
-                print "Running Instructions:\n\npython cnn.py <input_dir> <classCount> <spec_count> <segment_length> <learning_rate> <momentum> <evaluate> <test> <output_dir>"
+                print("Running Instructions:\n\npython cnn.py <input_dir> <classCount> <spec_count> <segment_length> <learning_rate> <momentum> <evaluate> <test> <output_dir>")
         else:
                 parser = argparse.ArgumentParser()
 
