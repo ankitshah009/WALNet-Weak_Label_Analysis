@@ -108,6 +108,7 @@ def processList(filelist):
 print('\nLooks Good To Me!\n')
 
 if __name__ == "__main__":
+    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
     print(len(sys.argv))
     if len(sys.argv) != 9:
         print('Takes arg1 = input-file list - formatted audio wav file list, arg2 = audio path, arg3 = output feature path, arg4 = list root path ')
