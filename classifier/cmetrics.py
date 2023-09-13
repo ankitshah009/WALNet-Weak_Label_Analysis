@@ -4,7 +4,7 @@ import numpy
 def compute_ap_my(label,pred):
 
     if label.sum() == 0:
-        print 'No positives found, retuning None'
+        print('No positives found, retuning None')
         return None
     else:
         sids = numpy.argsort(pred)[::-1]

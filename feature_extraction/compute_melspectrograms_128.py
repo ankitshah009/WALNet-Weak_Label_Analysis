@@ -9,7 +9,8 @@ from create_file import *
 from tqdm import tqdm
 import argparse
 
-sampling_freq = 44100
+#sampling_freq = 44100
+sampling_freq = 8000
 window_length = 1024
 hop_length = 512
 power = 2
@@ -17,7 +18,7 @@ num_mels = 128
 
 # A list of segmented spectrograms features file is dumped in a list at the end of processList function
 def processList(inlist):
-    subprocess.Popen(['ffmpeg'])
+    #subprocess.Popen(['ffmpeg'])
     #File containing list of input wav files to process and extract features    
     inls = open(inlist)
 
